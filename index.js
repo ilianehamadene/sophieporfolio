@@ -1,4 +1,4 @@
-
+// ------------------------------------ recuperation projet ---------//
 
 let dataFromApi = [];
 fetch("http://localhost:5678/api/works")
@@ -29,6 +29,10 @@ function createHtmlFromApi(data) {
   }
 }
 
+
+// ------------------------------------ Filtre projet ---------//
+
+
 let filterButtons = document.getElementsByClassName("filters-chip"); //Get all filter buttons
 for (let filterButton of filterButtons) {
   //loop inside all filter buttons
@@ -50,6 +54,9 @@ for (let filterButton of filterButtons) {
     filterButton.classList.add("active");
   });
 }
+
+
+// ------------------------------------ log in ---------//
 
 
 let btnconnection = document.getElementById("connection");

@@ -1,3 +1,4 @@
+// ------------------------------------ fonctionnement modale ---------//
 let messageErreur = document.getElementsByClassName('message-erreur')[0];
 let modalContainer = document.getElementsByClassName('modal-container')[0];
 let modal1Container = document.getElementsByClassName('container1')[0];
@@ -51,7 +52,7 @@ modalClose1.addEventListener("click", function(){
 
 // ---------upload img----------//
 
-// const uploadImgDiv = document.getElementById('upload-img-div');
+
 const uploadImg = document.getElementById('upload-img');
 
 uploadImg.addEventListener("change", previewFile);
@@ -77,6 +78,11 @@ function displayImage(file) {
     </figure>`
 
 }
+
+// ------------------------------------ Post projet ---------//
+
+
+
 
 const token =sessionStorage.getItem('token');
 let postProject = document.getElementsByClassName("valider-ajout")[0];
