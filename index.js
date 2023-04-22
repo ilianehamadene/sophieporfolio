@@ -29,65 +29,56 @@ function createHtmlFromApi(data) {
   }
 }
 
+//----------------------------------- Filtre projet ---------//
+// let categorieFromApi = [];
 
-// ------------------------------------ Filtre projet ---------//
+// function fetchCategories() {
+//  fetch("http://localhost:5678/api/categories")
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((response) => {
+//       CreateFiltersFromApi(response)
+//       categorieFromApi = response;
+      
+//     });
+// }
+// fetchCategories()
+// CreateFiltersFromApi(categorieFromApi)
 
+// function CreateFiltersFromApi(data) {
 
-let filterButtons = document.getElementsByClassName("filters-chip"); //Get all filter buttons
-for (let filterButton of filterButtons) {
-  //loop inside all filter buttons
-  filterButton.addEventListener("click", () => {
-    //listen click on filter
-    const categoryId = +filterButton.getAttribute("categoryId"); //get categoryId from html attibute
-    for (let allFilterButton of filterButtons) {
-      allFilterButton.classList.remove("active"); //remove all active classes from filter
-    }
-    if (categoryId !== 0) {
-      //categoryID == 0 is filter 'tous'
-      const filteredData = dataFromApi.filter((oneDataFromApi) => {
-        return oneDataFromApi.categoryId === categoryId; //filter by categoryId
-      });
-      createHtmlFromApi(filteredData);
-    } else {
-      createHtmlFromApi(dataFromApi);
-    }
-    filterButton.classList.add("active");
-  });
-}
+//   const liste = document.getElementById("filters");
 
+//   for (let i = 0; i < data.length; i++) {
+//     console.log(data[i].name)
+//     const filters = document.createElement("li");
+//     filters.classList.add("filters-chip");
+//     filters.setAttribute("categoryId", data[i].id);
+//     filters.innerHTML = (data[i].name)
+//     liste.appendChild(filters);
 
-// ------------------------------------ log in ---------//
+//     let filterButtons = document.getElementsByClassName("filters-chip"); //Get all filter buttons
+//     for (let filterButton of filterButtons) {
+//       //loop inside all filter buttons
+//       filterButton.addEventListener("click", () => {
+//         //listen click on filter
+//         const categoryId = +filterButton.getAttribute("categoryId"); //get categoryId from html attibute
+//         for (let allFilterButton of filterButtons) {
+//           allFilterButton.classList.remove("active"); //remove all active classes from filter
+//         }
+//         if (categoryId !== 0) {
+//           //categoryID == 0 is filter 'tous'
+//           const filteredData = dataFromApi.filter((oneDataFromApi) => {
+//             return oneDataFromApi.categoryId === categoryId; //filter by categoryId
+//           });
+//           createHtmlFromApi(filteredData);
+//         } else {
+//           createHtmlFromApi(dataFromApi);
+//         }
+//         filterButton.classList.add("active");
+//       });
+//     }
+//   }
+// }
 
-
-let btnconnection = document.getElementById("connection");
-btnconnection.addEventListener("click", function () {
-  let passwordInput = document.getElementById("mdp").value;
-  let emailInput = document.getElementById("email").value;
-let errorMessage = document.getElementsByClassName("erreur-mdp")[0];
-errorMessage.classList.remove('erreur-mdp_active')
-
-  console.log(emailInput);
-  console.log(passwordInput);
-  fetch("http://localhost:5678/api/users/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: emailInput,
-      password: passwordInput,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Réponse du serveur :", data);
-        if(data.token) {
-            sessionStorage.setItem("token", data.token);
-            window.location.href="index_edit.html"
-        }
-        else{errorMessage.classList.add('erreur-mdp_active')}
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la requête:", error);
-    });
-});

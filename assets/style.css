@@ -150,7 +150,7 @@ li:hover {
 	gap : 10px;
 }
 
-#filters ul li {
+#filters ul li  {
 	border : 1px solid #1d6154;
 	border-radius: 32px;
 	padding: 9px 11px;
