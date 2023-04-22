@@ -30,55 +30,58 @@ function createHtmlFromApi(data) {
 }
 
 //----------------------------------- Filtre projet ---------//
-// let categorieFromApi = [];
+let categorieFromApi = [];
 
-// function fetchCategories() {
-//  fetch("http://localhost:5678/api/categories")
-//     .then((response) => {
-//       return response.json();
-//     })
-//     .then((response) => {
-//       CreateFiltersFromApi(response)
-//       categorieFromApi = response;
+function fetchCategories() {
+ fetch("http://localhost:5678/api/categories")
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      CreateFiltersFromApi(response)
+      categorieFromApi = response;
       
-//     });
-// }
-// fetchCategories()
-// CreateFiltersFromApi(categorieFromApi)
+    });
+}
+fetchCategories()
+CreateFiltersFromApi(categorieFromApi)
 
-// function CreateFiltersFromApi(data) {
+function CreateFiltersFromApi(data) {
 
-//   const liste = document.getElementById("filters");
-
-//   for (let i = 0; i < data.length; i++) {
-//     console.log(data[i].name)
-//     const filters = document.createElement("li");
-//     filters.classList.add("filters-chip");
-//     filters.setAttribute("categoryId", data[i].id);
-//     filters.innerHTML = (data[i].name)
-//     liste.appendChild(filters);
-
-//     let filterButtons = document.getElementsByClassName("filters-chip"); //Get all filter buttons
-//     for (let filterButton of filterButtons) {
-//       //loop inside all filter buttons
-//       filterButton.addEventListener("click", () => {
-//         //listen click on filter
-//         const categoryId = +filterButton.getAttribute("categoryId"); //get categoryId from html attibute
-//         for (let allFilterButton of filterButtons) {
-//           allFilterButton.classList.remove("active"); //remove all active classes from filter
-//         }
-//         if (categoryId !== 0) {
-//           //categoryID == 0 is filter 'tous'
-//           const filteredData = dataFromApi.filter((oneDataFromApi) => {
-//             return oneDataFromApi.categoryId === categoryId; //filter by categoryId
-//           });
-//           createHtmlFromApi(filteredData);
-//         } else {
-//           createHtmlFromApi(dataFromApi);
-//         }
-//         filterButton.classList.add("active");
-//       });
-//     }
-//   }
-// }
+  
+  const list = document.getElementById("filters-list");
+  for (let i = 0; i < data.length; i++) {
+    console.log(data[i].name)
+    const filters = document.createElement("li");
+    filters.classList.add("filters-chip");
+    filters.setAttribute("categoryId", data[i].id);
+    
+    filters.innerHTML = (data[i].name)
+  
+    list.appendChild(filters);
+   
+    
+  }
+    let filterButtons = document.getElementsByClassName("filters-chip"); //Get all filter buttons
+    for (let filterButton of filterButtons) {
+      //loop inside all filter buttons
+      filterButton.addEventListener("click", () => {
+        //listen click on filter
+        const categoryId = +filterButton.getAttribute("categoryId"); //get categoryId from html attibute
+        for (let allFilterButton of filterButtons) {
+          allFilterButton.classList.remove("active"); //remove all active classes from filter
+        }
+        if (categoryId !== 0) {
+          //categoryID == 0 is filter 'tous'
+          const filteredData = dataFromApi.filter((oneDataFromApi) => {
+            return oneDataFromApi.categoryId === categoryId; //filter by categoryId
+          });
+          createHtmlFromApi(filteredData);
+        } else {
+          createHtmlFromApi(dataFromApi);
+        }
+        filterButton.classList.add("active");
+      });
+    }
+}
 
