@@ -33,3 +33,6 @@ btnconnection.addEventListener("click", function () {
       console.error("Erreur lors de la requête:", error);
     });
 });
+
+
+

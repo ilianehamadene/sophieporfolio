@@ -94,3 +94,14 @@ function createModalFromApi(data) {
     });
   });
 }
+
+
+//----------------logout--------------//
+
+
+
+const logout = document.getElementById("logout");
+logout.addEventListener("click", () => {
+    console.log("hey")
+    sessionStorage.removeItem("token");
+})
